@@ -7,7 +7,7 @@ export default function ContactUs() {
 
   const { settings } = useSettings();
 
-  const CONTACT_EMAIL = settings?.email || "info@ninebyt.com";
+  const CONTACT_EMAIL = settings?.email || "team9byt@gmail.com";
   const CONTACT_PHONE = settings?.phone || "+91 00000 00000";
   const CONTACT_ADDRESS = settings?.address || "India";
 
@@ -71,7 +71,7 @@ export default function ContactUs() {
 
     const API_BASE =
       import.meta.env.VITE_API_URL ||
-      "https://zenithcarebackJHend.onrender.com";
+      "https://ninebyt.onrender.com";
 
     try {
 
@@ -175,7 +175,7 @@ export default function ContactUs() {
 
             {[
               { icon: Mail, label: "Email", value: CONTACT_EMAIL, link: `mailto:${CONTACT_EMAIL}` },
-              { icon: Phone, label: "Phone", value: CONTACT_PHONE, link: phoneHref },
+              // { icon: Phone, label: "Phone", value: CONTACT_PHONE, link: phoneHref },
               { icon: MapPin, label: "Location", value: CONTACT_ADDRESS, link: MAP_LINK },
             ].map((item, i) => {
 

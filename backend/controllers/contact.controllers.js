@@ -14,129 +14,311 @@ function escapeHtml(str = "") {
   /* ================= ADMIN EMAIL ================= */
 
 const adminHtml = (c) => `
-<div style="font-family:Arial,sans-serif;padding:20px;">
-
-  <h2 style="color:#2563eb;">
-    📩 New Contact Enquiry Received
-  </h2>
-
-  <hr/>
-
-  <table style="width:100%;font-size:14px;line-height:1.8;">
-
-    <tr>
-      <td><b>Name:</b></td>
-      <td>${escapeHtml(c.firstName)} ${escapeHtml(c.lastName)}</td>
-    </tr>
-
-    <tr>
-      <td><b>Email:</b></td>
-      <td>${escapeHtml(c.email)}</td>
-    </tr>
-
-    <tr>
-      <td><b>Phone:</b></td>
-      <td>${escapeHtml(c.phone)}</td>
-    </tr>
-
-  </table>
-
-  <br/>
-
-  <p><b>Message:</b></p>
+<div style="
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f7fb;
+  padding:40px 20px;
+">
 
   <div style="
-    background:#f9fafb;
-    padding:12px;
-    border-left:4px solid #2563eb;
-    font-size:14px;
+    max-width:620px;
+    margin:auto;
+    background:#ffffff;
+    border-radius:10px;
+    border:1px solid #e5e7eb;
+    overflow:hidden;
   ">
-    ${escapeHtml(c.message)}
+
+
+    <!-- HEADER -->
+    <div style="
+      background:#111827;
+      padding:20px 25px;
+    ">
+
+      <h2 style="
+        color:#ffffff;
+        margin:0;
+        font-weight:600;
+        letter-spacing:0.5px;
+      ">
+        Ninebyt Software Solutions
+      </h2>
+
+      <p style="
+        color:#9ca3af;
+        font-size:13px;
+        margin-top:5px;
+        margin-bottom:0;
+      ">
+        New Client Enquiry Notification
+      </p>
+
+    </div>
+
+
+
+    <!-- BODY -->
+    <div style="padding:25px;">
+
+
+      <h3 style="
+        margin-top:0;
+        color:#2563eb;
+      ">
+        Client Details
+      </h3>
+
+
+      <table style="
+        width:100%;
+        font-size:14px;
+        line-height:1.8;
+        color:#111827;
+      ">
+
+        <tr>
+          <td style="width:130px;"><b>Name</b></td>
+          <td>${escapeHtml(c.firstName)} ${escapeHtml(c.lastName)}</td>
+        </tr>
+
+        <tr>
+          <td><b>Email</b></td>
+          <td>${escapeHtml(c.email)}</td>
+        </tr>
+
+        <tr>
+          <td><b>Phone</b></td>
+          <td>${escapeHtml(c.phone)}</td>
+        </tr>
+
+      </table>
+
+
+
+      <!-- MESSAGE -->
+      <div style="margin-top:25px;">
+
+        <h3 style="
+          margin-bottom:10px;
+          color:#2563eb;
+        ">
+          Project Message
+        </h3>
+
+        <div style="
+          background:#f9fafb;
+          border:1px solid #e5e7eb;
+          padding:15px;
+          border-radius:6px;
+          font-size:14px;
+          color:#374151;
+        ">
+
+          ${escapeHtml(c.message)}
+
+        </div>
+
+      </div>
+
+
+
+      <!-- TECH INFO -->
+      <div style="
+        margin-top:25px;
+        font-size:12px;
+        color:#6b7280;
+      ">
+
+        <b>Technical Information</b><br/>
+
+        IP Address: ${escapeHtml(c.ipAddress || "Unknown")}<br/>
+
+        Browser: ${escapeHtml(c.userAgent || "Unknown")}
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+    <div style="
+      background:#f9fafb;
+      padding:20px 25px;
+      font-size:13px;
+      color:#374151;
+      border-top:1px solid #e5e7eb;
+    ">
+
+      <b>Ninebyt Software Solutions</b><br/>
+
+      Custom Software, Websites and Digital Solutions<br/>
+
+      Email: team9byt@gmail.com
+
+    </div>
+
+
   </div>
-
-  <hr/>
-
-  <p style="font-size:13px;color:#444;line-height:1.6;">
-
-    <b>About Zenithcare</b><br/>
-
-    Zenithcare provides professional nursing and therapy services
-    focused on comfort, safety, and patient well-being.
-    Our certified team delivers reliable care at home and in hospitals
-    with dignity and respect.
-
-  </p>
-
-  <p style="font-size:12px;color:#555;">
-
-    <b>Technical Info</b><br/>
-
-    IP Address: ${escapeHtml(c.ipAddress || "Unknown")}<br/>
-    Browser: ${escapeHtml(c.userAgent || "Unknown")}
-
-  </p>
 
 </div>
 `;
+
 
 
 /* ================= USER EMAIL ================= */
 
-const userHtml = (c) => `
-<div style="font-family:Arial,sans-serif;padding:20px;">
-
-  <h2 style="color:#16a34a;">
-    ✅ We’ve Received Your Message
-  </h2>
-
-  <p>Hello <b>${escapeHtml(c.firstName)}</b>,</p>
-
-  <p>
-    Thank you for contacting <b>Zenithcare</b>.
-  </p>
-
-  <p>
-    We appreciate your interest in our healthcare services.
-    Our support team will review your message and respond shortly.
-  </p>
-
-  <hr/>
-
-  <p><b>Your Message:</b></p>
+ const userHtml = (c) => `
+<div style="
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f4f7fb;
+  padding:40px 20px;
+">
 
   <div style="
-    background:#f9fafb;
-    padding:12px;
-    border-left:4px solid #16a34a;
-    font-size:14px;
+    max-width:620px;
+    margin:auto;
+    background:#ffffff;
+    border-radius:10px;
+    border:1px solid #e5e7eb;
+    overflow:hidden;
   ">
-    ${escapeHtml(c.message)}
+
+
+    <!-- HEADER -->
+    <div style="
+      background:#111827;
+      padding:20px 25px;
+    ">
+
+      <h2 style="
+        color:#ffffff;
+        margin:0;
+        font-weight:600;
+      ">
+        Ninebyt Software Solutions
+      </h2>
+
+      <p style="
+        color:#9ca3af;
+        font-size:13px;
+        margin-top:5px;
+        margin-bottom:0;
+      ">
+        We've received your enquiry
+      </p>
+
+    </div>
+
+
+
+    <!-- BODY -->
+    <div style="padding:25px;">
+
+
+      <h3 style="
+        color:#2563eb;
+        margin-top:0;
+      ">
+        Thank you for contacting us
+      </h3>
+
+
+      <p style="font-size:14px;color:#374151;">
+        Hello <b>${escapeHtml(c.firstName)}</b>,
+      </p>
+
+
+      <p style="font-size:14px;color:#374151;line-height:1.6;">
+
+        We have successfully received your message.
+
+        <br/><br/>
+
+        Our team will carefully review your requirements and get back to you within 24 hours.
+
+        <br/><br/>
+
+        We look forward to helping you build and grow your business with our software solutions.
+
+      </p>
+
+
+
+      <!-- MESSAGE COPY -->
+      <div style="margin-top:25px;">
+
+        <p style="
+          font-size:14px;
+          margin-bottom:8px;
+          font-weight:600;
+          color:#111827;
+        ">
+          Your Message:
+        </p>
+
+
+        <div style="
+          background:#f9fafb;
+          border:1px solid #e5e7eb;
+          padding:15px;
+          border-radius:6px;
+          font-size:14px;
+          color:#374151;
+        ">
+
+          ${escapeHtml(c.message)}
+
+        </div>
+
+      </div>
+
+
+
+      <!-- SIGNATURE -->
+      <div style="
+        margin-top:30px;
+        font-size:14px;
+        color:#374151;
+      ">
+
+        Best regards,<br/><br/>
+
+        <b>Ninebyt Software Solutions</b><br/>
+
+        Custom Software & Website Development<br/>
+
+        team9byt@gmail.com
+
+      </div>
+
+
+    </div>
+
+
+
+    <!-- FOOTER -->
+    <div style="
+      background:#f9fafb;
+      padding:15px 25px;
+      font-size:12px;
+      color:#6b7280;
+      border-top:1px solid #e5e7eb;
+      text-align:center;
+    ">
+
+      This is an automated message confirming your enquiry.
+
+    </div>
+
+
   </div>
-
-  <hr/>
-
-  <p style="font-size:13px;color:#444;line-height:1.6;">
-
-    <b>About Zenithcare</b><br/>
-
-    Zenithcare provides professional nursing and therapy services
-    focused on comfort, safety, and patient well-being.
-    Our certified team delivers reliable care at home and in hospitals
-    with dignity and respect.
-
-  </p>
-
-  <p style="margin-top:20px;">
-
-    Warm regards,<br/>
-
-    <b>Zenithcare Care Team</b><br/>
-    
-
-  </p>
 
 </div>
 `;
+
 
 
 /* ------------------------------------------------ */
