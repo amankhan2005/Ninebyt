@@ -20,3 +20,25 @@ body {
 .container {
   @apply max-w-7xl mx-auto px-4;
 }
+
+.glow-text {
+
+  animation: glow 1s ease-in-out infinite alternate;
+
+}
+
+@keyframes glow {
+
+  from {
+
+    text-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+
+  }
+
+  to {
+
+    text-shadow: 0 0 30px rgba(37, 99, 235, 0.6);
+
+  }
+
+}

@@ -1,110 +1,119 @@
- import {
-  FaUserShield,
-  FaSyncAlt,
-  FaPhoneAlt,
-  FaHeart,
-} from "react-icons/fa";
-
-export default function PeaceOfMind() {
-  const cards = [
-    {
-      icon: <FaUserShield />,
-      title: "Skilled & Trusted Staff",
-      desc: "All professionals are certified, trained, and verified to deliver safe and reliable care.",
-    },
-    {
-      icon: <FaSyncAlt />,
-      title: "Consistent Personal Care",
-      desc: "We provide dedicated caregivers who understand patient needs and preferences.",
-    },
-    {
-      icon: <FaPhoneAlt />,
-      title: "24/7 Support Service",
-      desc: "Our support team is available anytime to assist patients and families.",
-    },
-    {
-      icon: <FaHeart />,
-      title: "Compassionate Care",
-      desc: "Quality healthcare services for children, adults, seniors, and special care patients.",
-    },
-  ];
-
+ export default function WhyChooseUs() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="relative bg-black text-white py-20 px-6 overflow-hidden">
+
+
+      {/* Background Glow */}
+
+      <div className="absolute w-[500px] h-[500px] bg-blue-600/10 blur-[160px] rounded-full top-0 right-0"></div>
+
+
+
+      <div className="relative max-w-7xl mx-auto">
+
 
         {/* Heading */}
-        <h2 className="text-4xl md:text-5xl font-extrabold text-center mb-16">
-          <span className="font-serif italic font-medium">
-            Why
-          </span>{" "}
-          Choose Zenithcare
-        </h2>
 
-        {/* Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="text-center mb-20">
 
-          {cards.map((item, i) => (
-            <div
-              key={i}
-              className="
-                relative
-                bg-white/70
-                backdrop-blur-lg
-                rounded-2xl
-                border border-pink-200/50
-                p-7
-                shadow-md
-                transition-all
-                duration-300
-                hover:-translate-y-3
-                hover:shadow-2xl
-                hover:border-pink-400
-                group
-                overflow-hidden
-              "
-            >
+          <p className="text-blue-500 font-semibold tracking-widest mb-4">
+            WHY CHOOSE NINEBYT
+          </p>
 
-              {/* Glossy Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-transparent to-pink-100/30 opacity-0 group-hover:opacity-100 transition duration-300"></div>
 
-              {/* Icon */}
-              <div
-                className="
-                  w-10 h-10
-                  bg-gradient-to-br from-sky-300 to-pink-300
-                  text-white
-                  rounded-full
-                  flex
-                  items-center
-                  justify-center
-                  mb-4
-                  text-lg
-                  transition
-                  duration-300
-                  group-hover:scale-110
-                  group-hover:rotate-6
-                "
-              >
-                {item.icon}
-              </div>
+          <h2 className="text-4xl md:text-5xl font-bold">
 
-              {/* Title */}
-              <h3 className="font-bold text-lg mb-2 text-black relative z-10">
-                {item.title}
-              </h3>
+            Built for businesses that expect more
 
-              {/* Desc */}
-              <p className="text-sm text-gray-600 leading-relaxed relative z-10">
-                {item.desc}
-              </p>
+          </h2>
 
-            </div>
-          ))}
+
+          <p className="text-gray-400 mt-4 max-w-xl mx-auto">
+
+            We focus on quality, performance, and long-term success.
+
+          </p>
 
         </div>
 
+
+
+        {/* Cards */}
+
+        <div className="grid md:grid-cols-2 gap-8">
+
+
+          {[
+            {
+              title: "Modern, scalable technology",
+              desc: "We use modern technologies to build fast, secure, and scalable products."
+            },
+            {
+              title: "Focus on business growth",
+              desc: "We create solutions designed to help your business grow faster."
+            },
+            {
+              title: "Premium, clean design",
+              desc: "Our designs build trust and improve user experience."
+            },
+            {
+              title: "Reliable long-term support",
+              desc: "We support your product even after launch."
+            }
+          ].map((item, i) => (
+
+            <div
+              key={i}
+              className="group relative bg-white/5 border border-white/10 rounded-2xl p-8 hover:border-blue-500 transition duration-500 hover:translate-y-[-6px]"
+            >
+
+
+              {/* Glow */}
+
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-blue-600/10 blur-xl rounded-2xl"></div>
+
+
+
+              {/* Number */}
+
+              <span className="text-blue-500 font-semibold text-sm">
+
+                0{i + 1}
+
+              </span>
+
+
+
+              {/* Title */}
+
+              <h3 className="text-xl font-semibold mt-3 mb-3">
+
+                {item.title}
+
+              </h3>
+
+
+
+              {/* Description */}
+
+              <p className="text-gray-400 leading-relaxed">
+
+                {item.desc}
+
+              </p>
+
+
+            </div>
+
+          ))}
+
+
+        </div>
+
+
       </div>
+
+
     </section>
   );
 }

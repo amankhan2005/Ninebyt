@@ -4,14 +4,12 @@ import { motion } from "framer-motion";
 import { useSettings } from "../context/SettingsContext";
 
 export default function ContactUs() {
+
   const { settings } = useSettings();
 
-  /* ================= CONTACT DETAILS ================= */
-  const CONTACT_EMAIL = settings?.email || "info@zenithcareservices.com";
-  const CONTACT_PHONE = settings?.phone || "240-274-8822";
-  const CONTACT_ADDRESS =
-    settings?.address ||
-    "703 Rainbow Ct, Edgewood, MD 21040";
+  const CONTACT_EMAIL = settings?.email || "info@ninebyt.com";
+  const CONTACT_PHONE = settings?.phone || "+91 00000 00000";
+  const CONTACT_ADDRESS = settings?.address || "India";
 
   const MAP_LINK =
     settings?.mapLink ||
@@ -19,7 +17,9 @@ export default function ContactUs() {
 
   const phoneHref = `tel:${CONTACT_PHONE.replace(/[^0-9+]/g, "")}`;
 
-  /* ================= FORM STATE ================= */
+
+  /* FORM LOGIC UNCHANGED */
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -32,34 +32,37 @@ export default function ContactUs() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
 
-  /* ================= CAPTCHA ================= */
   const [num1, setNum1] = useState(0);
   const [num2, setNum2] = useState(0);
   const [captcha, setCaptcha] = useState("");
   const [captchaValid, setCaptchaValid] = useState(false);
 
-  useEffect(() => {
-    regenerateCaptcha();
-  }, []);
+
+  useEffect(() => regenerateCaptcha(), []);
 
   const regenerateCaptcha = () => {
+
     setNum1(Math.floor(Math.random() * 9) + 1);
     setNum2(Math.floor(Math.random() * 9) + 1);
     setCaptcha("");
     setCaptchaValid(false);
+
   };
 
   useEffect(() => {
     setCaptchaValid(Number(captcha) === num1 + num2);
   }, [captcha, num1, num2]);
 
+
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  /* ================= SUBMIT ================= */
+
   async function handleSubmit(e) {
+
     e.preventDefault();
+
     if (!captchaValid || loading) return;
 
     setLoading(true);
@@ -68,18 +71,20 @@ export default function ContactUs() {
 
     const API_BASE =
       import.meta.env.VITE_API_URL ||
-      "https://zenithcarebackend.onrender.com";
+      "https://zenithcarebackJHend.onrender.com";
 
     try {
+
       const res = await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
 
-      if (!res.ok) throw new Error("Failed to send message");
+      if (!res.ok) throw new Error();
 
       setSuccess(true);
+
       setForm({
         firstName: "",
         lastName: "",
@@ -89,235 +94,248 @@ export default function ContactUs() {
       });
 
       regenerateCaptcha();
-    } catch (err) {
-      setError("Something went wrong. Please try again.");
+
+    } catch {
+
+      setError("Failed to send message.");
+
     } finally {
+
       setLoading(false);
+
     }
+
   }
 
+
+  /* UI */
+
   return (
-    <main className="bg-gradient-to-br from-pink-50 via-white to-blue-50 py-28 font-[Poppins]">
+
+    <main className="relative bg-black text-white py-32 overflow-hidden font-[Poppins]">
 
 
-      <div className="max-w-7xl mx-auto px-4">
+      {/* MULTI LAYER GLOW */}
+
+      <div className="absolute w-[700px] h-[700px] bg-blue-600/10 blur-[200px] rounded-full top-[-200px] left-[-200px]" />
+
+      <div className="absolute w-[500px] h-[500px] bg-blue-400/10 blur-[180px] rounded-full bottom-[-200px] right-[-200px]" />
 
 
-        {/* ================= HERO ================= */}
+
+      <div className="relative max-w-7xl mx-auto px-6">
+
+
+        {/* HERO */}
+
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-24"
         >
 
-          <p className="text-pink-400 font-semibold mb-3 tracking-wide">
-            Zenith Care Services
+          <p className="text-blue-500 font-semibold tracking-widest mb-4">
+
+            CONTACT NINEBYT
+
           </p>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 mb-5 leading-tight">
 
-            Get In{" "}
-            <span className="italic font-serif text-blue-400">
-              Touch
-            </span>{" "}
-            With Us
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+
+            Let's create something
+
+            <span className="text-blue-500 block">
+
+              exceptional together
+
+            </span>
 
           </h1>
 
-          <p className="text-gray-600 max-w-2xl mx-auto text-lg">
-            We’re here to support your healthcare needs with
-            compassion, professionalism, and trusted nursing care.
+
+          <p className="text-gray-400 text-lg max-w-xl mx-auto">
+
+            Tell us about your project. We’ll help you build it.
+
           </p>
+
 
         </motion.div>
 
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+
+        <div className="grid lg:grid-cols-3 gap-10">
 
 
-          {/* ================= INFO ================= */}
+          {/* INFO */}
+
           <div className="space-y-6">
 
 
             {[
-              {
-                icon: Mail,
-                label: "Email",
-                value: CONTACT_EMAIL,
-                link: `mailto:${CONTACT_EMAIL}`,
-              },
-              {
-                icon: Phone,
-                label: "Phone",
-                value: CONTACT_PHONE,
-                link: phoneHref,
-              },
-              {
-                icon: MapPin,
-                label: "Location",
-                value: CONTACT_ADDRESS,
-                link: MAP_LINK,
-              },
+              { icon: Mail, label: "Email", value: CONTACT_EMAIL, link: `mailto:${CONTACT_EMAIL}` },
+              { icon: Phone, label: "Phone", value: CONTACT_PHONE, link: phoneHref },
+              { icon: MapPin, label: "Location", value: CONTACT_ADDRESS, link: MAP_LINK },
             ].map((item, i) => {
+
               const Icon = item.icon;
 
               return (
-                <a
-                  key={i}
-                  href={item.link}
-                  target={i === 2 ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className="bg-white rounded-2xl p-6 shadow-lg border hover:shadow-xl transition flex gap-4 items-center"
+
+                <div key={i}
+                  className="bg-white/5 border border-white/10 p-6 rounded-xl hover:border-blue-500 hover:bg-white/10 transition"
                 >
 
-                  <div className="w-12 h-12 bg-gradient-to-r from-pink-400 to-blue-400 rounded-xl flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-white" />
-                  </div>
+                  <Icon className="text-blue-500 mb-3" />
 
-                  <div>
-                    <p className="text-xs text-gray-500 mb-1">
-                      {item.label}
-                    </p>
+                  <p className="text-gray-400 text-sm">
+                    {item.label}
+                  </p>
 
-                    <p className="text-sm font-medium text-gray-900">
-                      {item.value}
-                    </p>
-                  </div>
+                  <p className="font-medium">
+                    {item.value}
+                  </p>
 
-                </a>
+                </div>
+
               );
+
             })}
 
-          </div>
-
-
-          {/* ================= FORM ================= */}
-          <div className="lg:col-span-2 bg-white rounded-3xl p-10 shadow-2xl border">
-
-
-            {success && (
-              <div className="mb-4 bg-green-50 text-green-700 p-3 rounded-lg flex items-center gap-2">
-                <CheckCircle size={18} />
-                Message sent successfully.
-              </div>
-            )}
-
-            {error && (
-              <div className="mb-4 bg-red-50 text-red-700 p-3 rounded-lg">
-                {error}
-              </div>
-            )}
-
-
-            <form onSubmit={handleSubmit} className="space-y-5">
-
-
-              <div className="grid sm:grid-cols-2 gap-4">
-
-                <input
-                  name="firstName"
-                  placeholder="First Name"
-                  required
-                  onChange={handleChange}
-                  value={form.firstName}
-                  className="input"
-                />
-
-                <input
-                  name="lastName"
-                  placeholder="Last Name"
-                  required
-                  onChange={handleChange}
-                  value={form.lastName}
-                  className="input"
-                />
-
-              </div>
-
-
-              <input
-                name="email"
-                type="email"
-                placeholder="Email Address"
-                required
-                onChange={handleChange}
-                value={form.email}
-                className="input"
-              />
-
-              <input
-                name="phone"
-                placeholder="Phone Number"
-                required
-                onChange={handleChange}
-                value={form.phone}
-                className="input"
-              />
-
-
-              <textarea
-                name="message"
-                rows="4"
-                placeholder="Write your message..."
-                required
-                onChange={handleChange}
-                value={form.message}
-                className="input resize-none"
-              />
-
-
-              {/* CAPTCHA */}
-              <div className="bg-pink-50 p-4 rounded-xl">
-
-                <p className="text-sm font-semibold mb-2">
-                  Security Check: {num1} + {num2} = ?
-                </p>
-
-                <input
-                  value={captcha}
-                  onChange={(e) => setCaptcha(e.target.value)}
-                  className="input"
-                />
-
-              </div>
-
-
-              {/* BUTTON */}
-              <button
-                disabled={!captchaValid || loading}
-                className="w-full bg-blue-400 text-white py-4 rounded-xl font-semibold flex justify-center gap-2 hover:opacity-90 transition disabled:opacity-60"
-              >
-                {loading ? "Sending..." : "Send Message"}
-                <Send size={18} />
-              </button>
-
-            </form>
 
           </div>
+
+
+
+          {/* FORM */}
+
+          <div className="lg:col-span-2">
+
+
+            <div className="bg-white/5 border border-white/10 backdrop-blur-xl rounded-3xl p-10">
+
+
+              {success && (
+
+                <div className="bg-green-500/10 text-green-400 p-4 mb-6 rounded-lg flex gap-2">
+
+                  <CheckCircle size={18} />
+
+                  Message sent successfully
+
+                </div>
+
+              )}
+
+
+              {error && (
+
+                <div className="bg-red-500/10 text-red-400 p-4 mb-6 rounded-lg">
+
+                  {error}
+
+                </div>
+
+              )}
+
+
+
+              <form onSubmit={handleSubmit} className="space-y-5">
+
+
+                <div className="grid md:grid-cols-2 gap-4">
+
+                  <input name="firstName" placeholder="First Name" required value={form.firstName} onChange={handleChange} className="input"/>
+
+                  <input name="lastName" placeholder="Last Name" required value={form.lastName} onChange={handleChange} className="input"/>
+
+                </div>
+
+
+                <input name="email" placeholder="Email Address" required value={form.email} onChange={handleChange} className="input"/>
+
+                <input name="phone" placeholder="Phone Number" required value={form.phone} onChange={handleChange} className="input"/>
+
+
+                <textarea name="message" placeholder="Tell us about your project" required value={form.message} onChange={handleChange} className="input h-32"/>
+
+
+
+                {/* CAPTCHA */}
+
+                <div className="bg-white/5 border border-white/10 p-4 rounded-xl">
+
+                  <p className="text-sm text-gray-400 mb-2">
+
+                    Security Check: {num1} + {num2}
+
+                  </p>
+
+                  <input value={captcha} onChange={(e)=>setCaptcha(e.target.value)} className="input"/>
+
+                </div>
+
+
+
+                {/* BUTTON */}
+
+                <button
+
+                  disabled={!captchaValid || loading}
+
+                  className="w-full bg-blue-600 py-4 rounded-xl font-semibold hover:bg-blue-700 hover:scale-[1.02] transition"
+
+                >
+
+                  {loading ? "Sending..." : "Send Message"}
+
+                </button>
+
+
+              </form>
+
+
+            </div>
+
+
+          </div>
+
 
         </div>
+
 
       </div>
 
 
-      {/* INPUT STYLE */}
-      <style>{`
-        .input {
-          width: 100%;
-          border: 1px solid #E5E7EB;
-          border-radius: 0.75rem;
-          padding: 0.9rem 1rem;
-          transition: all 0.2s ease;
-          font-family: Poppins, sans-serif;
-        }
 
-        .input:focus {
-          border-color: #f472b6;
-          box-shadow: 0 0 0 2px rgba(244,114,182,0.25);
-          outline: none;
-        }
+      {/* INPUT */}
+
+      <style>{`
+
+      .input {
+
+        width:100%;
+        background:rgba(255,255,255,0.05);
+        border:1px solid rgba(255,255,255,0.1);
+        padding:14px;
+        border-radius:10px;
+        color:white;
+
+      }
+
+      .input:focus {
+
+        outline:none;
+        border-color:#2563eb;
+
+      }
+
       `}</style>
 
+
     </main>
+
   );
+
 }

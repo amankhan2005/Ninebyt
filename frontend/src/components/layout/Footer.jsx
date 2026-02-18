@@ -1,253 +1,216 @@
- import React from "react";
-import { Link } from "react-router-dom";
-
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaYoutube,
-  FaLinkedinIn,
-  FaPhoneAlt,
-  FaMapMarkerAlt,
-  FaEnvelope,
-} from "react-icons/fa";
-
-// Logo Import
-import logo from "../../assets/logo.png";
+import { FaTwitter, FaInstagram, FaLinkedin, FaGithub } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <footer className="bg-sky-300 text-white pt-24 pb-10 rounded-t-[3rem]">
+
+    <footer className="relative bg-black text-white border-t border-white/10 overflow-hidden">
 
 
-      {/* CTA Section */}
-      <div className="text-center max-w-3xl mx-auto mb-20 px-4">
+      {/* Glow */}
 
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
-          #CaringForLife
-        </h2>
-
-        <p className="text-lg opacity-90 mb-6">
-          How Can We Support Your Health & Care Needs Today?
-        </p>
-
-        <Link
-          to="/contact-us"
-          className="inline-block bg-white text-pink-500 px-7 py-3 rounded-full font-semibold hover:scale-105 transition"
-        >
-          Contact Us Now →
-        </Link>
-
-      </div>
-
-
-      {/* Main Footer Card */}
-      <div className="bg-white text-gray-800 max-w-7xl mx-auto rounded-3xl p-10 shadow-2xl">
-
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
-
-
-          {/* Company */}
-          <div className="flex flex-col items-start">
-
-            <Link to="/" className="mb-3">
-              <img
-                src={logo}
-                alt="Zenith Care Services Logo"
-                className="w-40 object-contain"
-              />
-            </Link>
-
-            <p className="text-sm text-gray-800 leading-relaxed max-w-xs">
-              Trusted healthcare staffing and home care with compassion and excellence.
-            </p>
-
-          </div>
-
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold mb-4 text-black">Quick Links</h4>
-
-            <ul className="space-y-2 text-sm text-gray-800">
-
-              <li>
-                <Link to="/" className="hover:text-pink-500">
-                  Home
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/about-us" className="hover:text-pink-500">
-                  About Us
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/contact-us" className="hover:text-pink-500">
-                  Contact
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/faq" className="hover:text-pink-500">
-                  FAQs
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/careers" className="hover:text-pink-500">
-                  Careers
-                </Link>
-              </li>
-
-            </ul>
-          </div>
-
-
-          {/* Services */}
-          <div>
-            <h4 className="font-semibold mb-4 text-black">Services</h4>
-
-            <ul className="space-y-2 text-sm text-gray-800">
-
-              <li>
-                <Link to="/services/rn" className="hover:text-pink-500">
-                  Registered Nurses
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/services/lpn" className="hover:text-pink-500">
-                  Licensed Practical Nurses
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/services/gna" className="hover:text-pink-500">
-                  GNA Services
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/services/cna" className="hover:text-pink-500">
-                  CNA Services
-                </Link>
-              </li>
-
-              <li>
-                <Link to="/services/ptot" className="hover:text-pink-500">
-                  PT / OT
-                </Link>
-              </li>
-
-            </ul>
-          </div>
-
-
-          {/* Contact */}
-          <div>
-  <h4 className="font-semibold mb-4 text-black">Contact</h4>
-
-  <div className="space-y-3 text-sm text-gray-800">
-
-
-    {/* Phone */}
-    <a
-      href="tel:2402748822"
-      className="flex items-center gap-2 hover:text-pink-500 transition"
-    >
-      <FaPhoneAlt className="text-pink-400" />
-      240-274-8822
-    </a>
-
-
-    {/* Email */}
-    <a
-      href="mailto:info@zenithcareservices.com"
-      className="flex items-center gap-2 hover:text-pink-500 transition"
-    >
-   <FaEnvelope size={16} className="text-pink-400 flex-shrink-0" />
-
-      info@zenithcareservices.com
-    </a>
-
-
-    {/* Address */}
-    <a
-      href="https://www.google.com/maps/search/?api=1&query=703+Rainbow+Ct+Edgewood+MD+21040"
-      target="_blank"
-      rel="noreferrer"
-      className="flex items-start gap-2 hover:text-pink-500 transition"
-    >
-      <FaMapMarkerAlt className="text-pink-400 mt-1" />
-
-      <span>
-        703 Rainbow Ct,<br />
-        Edgewood, MD 21040
-      </span>
-    </a>
-
-  </div>
-</div>
+      <div className="absolute w-[500px] h-[500px] bg-blue-600/10 blur-[180px] rounded-full -top-40 -right-40"></div>
 
 
 
-          {/* Connect */}
-          <div>
-            <h4 className="font-semibold mb-4 text-black">Connect</h4>
-
-            <div className="flex gap-3 mb-6">
-
-              <SocialIcon><FaFacebookF /></SocialIcon>
-              <SocialIcon><FaInstagram /></SocialIcon>
-              <SocialIcon><FaYoutube /></SocialIcon>
-              <SocialIcon><FaLinkedinIn /></SocialIcon>
-
-            </div>
+      <div className="relative max-w-7xl mx-auto px-6 py-20 grid md:grid-cols-4 gap-12">
 
 
-            {/* Career Card */}
-            <div className="bg-pink-400 rounded-xl p-4 text-white text-sm">
+        {/* Logo */}
 
-              <p className="font-semibold mb-1">
-                Join Our Care Team
-              </p>
+        <div>
 
-              <p className="opacity-90">
-                Build your healthcare career with us.
-              </p>
 
-              <Link
-                to="/careers"
-                className="inline-block mt-3 text-xs bg-white hover:bg-sky-500 text-pink-600 hover:text-white px-3 py-1 rounded-full font-medium"
-              >
-                Apply Now →
-              </Link>
+          <h2 className="text-2xl font-bold mb-4 tracking-tight">
 
-            </div>
+            Nine<span className="text-blue-500">byt</span>
 
-          </div>
+          </h2>
+
+
+          <p className="text-gray-400 text-sm leading-relaxed mb-6">
+
+            Ninebyt is a digital agency building modern websites,
+            scalable software, and digital solutions for businesses worldwide.
+
+          </p>
+
+
+          <p className="text-gray-500 text-sm">
+
+            Built for modern businesses.
+
+          </p>
+
 
         </div>
 
+
+
+        {/* Links */}
+
+        <div>
+
+          <h3 className="font-semibold mb-5 text-white">
+            Company
+          </h3>
+
+
+          <ul className="space-y-3 text-gray-400 text-sm">
+
+
+            <li>
+              <a href="/" className="hover:text-blue-500 transition">
+                Home
+              </a>
+            </li>
+
+
+            <li>
+              <a href="/services" className="hover:text-blue-500 transition">
+                Services
+              </a>
+            </li>
+
+
+            <li>
+              <a href="/about-us" className="hover:text-blue-500 transition">
+                About Us
+              </a>
+            </li>
+
+
+            <li>
+              <a href="/contact-us" className="hover:text-blue-500 transition">
+                Contact
+              </a>
+            </li>
+
+
+          </ul>
+
+        </div>
+
+
+
+        {/* Contact */}
+
+        <div>
+
+          <h3 className="font-semibold mb-5">
+            Contact
+          </h3>
+
+
+          <ul className="space-y-3 text-gray-400 text-sm">
+
+
+            <li>
+
+              <span className="text-gray-500">Email</span>
+
+              <br />
+
+              <a href="mailto:hello@ninebyt.com"
+                className="hover:text-blue-500 transition">
+
+                hello@ninebyt.com
+
+              </a>
+
+            </li>
+
+<li>
+              <span className="text-gray-500">Address</span>
+              <br />
+              <span className="text-gray-400">Lucknow ,India</span>
+            </li>
+
+
+          </ul>
+
+        </div>
+
+
+
+        {/* Social */}
+
+        <div>
+
+          <h3 className="font-semibold mb-5">
+            Follow Us
+          </h3>
+
+
+          <div className="flex gap-4">
+
+
+            <a href="#"
+              className="bg-white/5 border border-white/10 p-3 rounded-lg hover:border-blue-500 hover:bg-blue-600/10 transition">
+
+              <FaTwitter />
+
+            </a>
+
+
+            <a href="#"
+              className="bg-white/5 border border-white/10 p-3 rounded-lg hover:border-blue-500 hover:bg-blue-600/10 transition">
+
+              <FaInstagram />
+
+            </a>
+
+
+            <a href="#"
+              className="bg-white/5 border border-white/10 p-3 rounded-lg hover:border-blue-500 hover:bg-blue-600/10 transition">
+
+              <FaLinkedin />
+
+            </a>
+
+
+            <a href="#"
+              className="bg-white/5 border border-white/10 p-3 rounded-lg hover:border-blue-500 hover:bg-blue-600/10 transition">
+
+              <FaGithub />
+
+            </a>
+
+
+          </div>
+
+
+        </div>
+
+
       </div>
 
 
-      {/* Bottom Bar */}
-      <div className="text-center text-sm mt-10 opacity-80">
-        © {new Date().getFullYear()} Zenith Care Services LLC. All Rights Reserved.
+
+      {/* Bottom */}
+
+      <div className="relative border-t border-white/10">
+
+
+        <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+
+
+          <p>
+            © 2026 Ninebyt. All rights reserved.
+          </p>
+
+
+          <p className="mt-2 md:mt-0">
+            Designed & Developed by Ninebyt
+          </p>
+
+
+        </div>
+
+
       </div>
+
 
     </footer>
-  );
-}
 
-
-/* Social Button */
-function SocialIcon({ children }) {
-  return (
-    <div className="w-9 h-9 rounded-full border border-pink-400 text-pink-400 flex items-center justify-center hover:bg-pink-500 hover:text-white transition cursor-pointer">
-      {children}
-    </div>
   );
 }

@@ -1,441 +1,75 @@
- import { useState, useRef, useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
-
-import {
-  FaChevronDown,
-  FaPhoneAlt,
-  FaUserNurse,
-} from "react-icons/fa";
-
-import { HiMenu, HiX } from "react-icons/hi";
-
-import logo from "../../assets/logo.png";
-
-
-export default function Header() {
-
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const [servicesOpen, setServicesOpen] = useState(false); // Desktop
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false); // Mobile
-
-
-  const dropdownRef = useRef(null);
-
-
-  /* Close desktop dropdown on outside click */
-
-  useEffect(() => {
-
-    function handleOutside(e) {
-
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(e.target)
-      ) {
-        setServicesOpen(false);
-      }
-
-    }
-
-    document.addEventListener("mousedown", handleOutside);
-
-    return () =>
-      document.removeEventListener("mousedown", handleOutside);
-
-  }, []);
-
-
-  const navClass =
-    "text-[#1F2933] hover:text-[#E85C9A] font-medium transition";
-
-  const activeClass =
-    "text-[#E85C9A] font-semibold border-b-2 border-[#E85C9A]";
-
-
-  /* Close mobile menu when route changes */
-
-  const closeMobile = () => {
-    setMobileOpen(false);
-    setMobileServicesOpen(false);
-  };
-
-
+export default function Navbar() {
   return (
-    <header
-      className="
-        sticky top-0 z-50
-        bg-white/60
-        backdrop-blur-2xl
-        border-b border-white/40
-        shadow-[0_8px_30px_rgba(0,0,0,0.04)]
-      "
-    >
+    <nav className="fixed top-0 w-full z-50">
 
-      <div className="max-w-7xl mx-auto px-6">
+      {/* Glass background */}
+
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-md border-b border-white/10"></div>
 
 
-        {/* ================= MAIN BAR ================= */}
-        <div className="flex items-center justify-between h-24">
+
+      <div className="relative max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
 
 
-          {/* LOGO */}
-          <Link to="/" className="flex items-center gap-3">
+        {/* Logo */}
 
-            <img
-              src={logo}
-              alt="Zenithcare Logo"
-              className="
-                h-14 md:h-16 w-auto
-                drop-shadow-md
-                hover:scale-105
-                transition
-              "
-            />
-
-          </Link>
+        <a
+          href="/"
+          className="text-2xl font-semibold tracking-tight text-white"
+        >
+          Nine<span className="text-blue-600">byt</span>
+        </a>
 
 
-          {/* ================= DESKTOP NAV ================= */}
-          <nav className="hidden md:flex items-center gap-10">
+
+        {/* Menu */}
+
+        <div className="hidden md:flex items-center gap-10 text-white/80 text-sm font-medium">
 
 
-            <NavLink
-              to="/"
-              className={({ isActive }) =>
-                isActive ? activeClass : navClass
-              }
-            >
-              Home
-            </NavLink>
+          <a href="/" className="hover:text-blue-600 transition">
+            Home
+          </a>
 
 
-            <NavLink
-              to="/about-us"
-              className={({ isActive }) =>
-                isActive ? activeClass : navClass
-              }
-            >
-              About Us
-            </NavLink>
+          <a href="/about-us" className="hover:text-blue-600 transition">
+            About Us
+          </a>
 
 
-            {/* DESKTOP SERVICES */}
-            <div className="relative" ref={dropdownRef}>
-
-              <button
-                onClick={() =>
-                  setServicesOpen(!servicesOpen)
-                }
-                className="
-                  flex items-center gap-1
-                  font-medium text-[#1F2933]
-                  hover:text-[#E85C9A]
-                "
-              >
-                Services
-
-                <FaChevronDown
-                  className={`text-xs mt-[2px] transition ${
-                    servicesOpen ? "rotate-180" : ""
-                  }`}
-                />
-
-              </button>
+          <a href="/services" className="hover:text-blue-600 transition">
+            Services
+          </a>
 
 
-              {servicesOpen && (
-
-                <div
-                  className="
-                    absolute left-0 top-full mt-4 w-72
-                    bg-white/80 backdrop-blur-xl
-                    rounded-2xl shadow-xl
-                    border border-white/50
-                    overflow-hidden
-                  "
-                >
-
-                  <DropLink to="/services/rn" setOpen={setServicesOpen}>
-                    Registered Nurse
-                  </DropLink>
-
-                  <DropLink to="/services/lpn" setOpen={setServicesOpen}>
-                    Licensed Practical Nurse
-                  </DropLink>
-
-                  <DropLink to="/services/gna" setOpen={setServicesOpen}>
-                    GNA
-                  </DropLink>
-
-                  <DropLink to="/services/cna" setOpen={setServicesOpen}>
-                    CNA
-                  </DropLink>
-
-                  <DropLink to="/services/ptot" setOpen={setServicesOpen}>
-                    PT / OT
-                  </DropLink>
-
-                </div>
-
-              )}
-
-            </div>
-
-
-            <NavLink
-              to="/faq"
-              className={({ isActive }) =>
-                isActive ? activeClass : navClass
-              }
-            >
-              FAQ
-            </NavLink>
-
-
-            <NavLink
-              to="/careers"
-              className={({ isActive }) =>
-                isActive ? activeClass : navClass
-              }
-            >
-              Career
-            </NavLink>
-
-
-            <NavLink
-              to="/contact-us"
-              className={({ isActive }) =>
-                isActive ? activeClass : navClass
-              }
-            >
-              Contact
-            </NavLink>
-
-
-          </nav>
-
-
-          {/* ================= CTA ================= */}
-          <div className="hidden md:flex items-center gap-4">
-
-
-            <Link
-              to="/request-nurse"
-              className="
-                flex items-center gap-2
-                bg-[#E85C9A] text-white
-                px-6 py-2 rounded-full
-                hover:bg-[#d94b89]
-                hover:shadow-xl
-                hover:scale-105
-                transition
-              "
-            >
-              <FaUserNurse />
-              Request a Nurse
-            </Link>
-
-
-            <a
-              href="tel:2402748822"
-              className="
-                flex items-center gap-2
-                bg-gradient-to-r
-                from-[#1FA6D9] to-[#0B8EC2]
-                text-white
-                px-6 py-2 rounded-full
-                shadow-lg
-                hover:shadow-xl
-                hover:scale-105
-                transition
-              "
-            >
-              <FaPhoneAlt />
-              Call Now
-            </a>
-
-
-          </div>
-
-
-          {/* ================= MOBILE BUTTON ================= */}
-          <button
-            onClick={() => {
-              setMobileOpen(!mobileOpen);
-              setMobileServicesOpen(false);
-            }}
-            className="md:hidden text-2xl text-[#1F2933]"
-          >
-            {mobileOpen ? <HiX /> : <HiMenu />}
-          </button>
+          <a href="/contact-us" className="hover:text-blue-600 transition">
+            Contact Us
+          </a>
 
 
         </div>
 
 
-        {/* ================= MOBILE MENU ================= */}
-        {mobileOpen && (
 
-          <div className="md:hidden pb-6">
+        {/* Contact Button */}
 
-            <nav className="flex flex-col gap-5 mt-4">
+       <a
+  href="/contact-us"
+  className="group inline-flex items-center gap-2 border border-blue-600 text-white px-6 py-3 rounded-md font-semibold transition-all duration-300 bg-blue-600 hover:bg-blue-700 hover:text-white"
+>
+  Contact Us Now
 
+  {/* Arrow */}
+  <span className="inline-block transition-transform duration-300 group-hover:translate-x-2">
+    →
+  </span>
 
-              <MobileLink to="/" close={closeMobile}>
-                Home
-              </MobileLink>
+</a>
 
-              <MobileLink to="/about-us" close={closeMobile}>
-                About Us
-              </MobileLink>
-
-
-              {/* MOBILE SERVICES */}
-              <div>
-
-                <button
-                  onClick={() =>
-                    setMobileServicesOpen(!mobileServicesOpen)
-                  }
-                  className="
-                    flex justify-between w-full
-                    font-medium text-[#1F2933]
-                  "
-                >
-                  Services
-
-                  <FaChevronDown
-                    className={`transition ${
-                      mobileServicesOpen
-                        ? "rotate-180"
-                        : ""
-                    }`}
-                  />
-
-                </button>
-
-
-                {mobileServicesOpen && (
-
-                  <div className="ml-4 mt-3 space-y-2 text-sm">
-
-
-                    <MobileServiceLink
-                      to="/services/rn"
-                      close={closeMobile}
-                    >
-                      RN
-                    </MobileServiceLink>
-
-                    <MobileServiceLink
-                      to="/services/lpn"
-                      close={closeMobile}
-                    >
-                      LPN
-                    </MobileServiceLink>
-
-                    <MobileServiceLink
-                      to="/services/gna"
-                      close={closeMobile}
-                    >
-                      GNA
-                    </MobileServiceLink>
-
-                    <MobileServiceLink
-                      to="/services/cna"
-                      close={closeMobile}
-                    >
-                      CNA
-                    </MobileServiceLink>
-
-                    <MobileServiceLink
-                      to="/services/ptot"
-                      close={closeMobile}
-                    >
-                      PT / OT
-                    </MobileServiceLink>
-
-                  </div>
-
-                )}
-
-              </div>
-
-
-              <MobileLink to="/faq" close={closeMobile}>
-                FAQ
-              </MobileLink>
-
-              <MobileLink to="/careers" close={closeMobile}>
-                Career
-              </MobileLink>
-
-              <MobileLink to="/contact-us" close={closeMobile}>
-                Contact
-              </MobileLink>
-
-              <MobileLink to="/request-nurse" close={closeMobile}>
-                Find Care
-              </MobileLink>
-
-
-            </nav>
-
-          </div>
-
-        )}
 
 
       </div>
 
-    </header>
-  );
-}
-
-
-/* ================= COMPONENTS ================= */
-
-
-function DropLink({ to, children, setOpen }) {
-  return (
-    <Link
-      to={to}
-      onClick={() => setOpen(false)}
-      className="
-        block px-6 py-3 text-[#1F2933]
-        hover:bg-pink-50/70
-        hover:text-[#E85C9A]
-        transition
-      "
-    >
-      {children}
-    </Link>
-  );
-}
-
-
-function MobileLink({ to, children, close }) {
-  return (
-    <Link
-      to={to}
-      onClick={close}
-      className="font-medium text-[#1F2933] hover:text-[#E85C9A]"
-    >
-      {children}
-    </Link>
-  );
-}
-
-
-function MobileServiceLink({ to, children, close }) {
-  return (
-    <Link
-      to={to}
-      onClick={close}
-      className="block text-gray-600 hover:text-[#E85C9A]"
-    >
-      {children}
-    </Link>
+    </nav>
   );
 }

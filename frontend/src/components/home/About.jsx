@@ -1,95 +1,178 @@
- import { motion } from "framer-motion";
-import { FaUserNurse, FaHeart, FaHospital } from "react-icons/fa";
-
-export default function About() {
+ export default function About() {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      viewport={{ once: true }}
-      className="py-16"
-    >
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="relative py-20 bg-black text-white px-6 overflow-hidden">
 
-        {/* Container */}
-        <div className="bg-[#FFF7FB] rounded-[32px] px-6 md:px-16 py-20 text-center shadow-sm">
 
-          {/* Tag */}
-          <p className="text-sm font-medium text-[#E85C9A] mb-4">
-            Our Mission & Values
+      {/* Glow Background */}
+
+      <div className="absolute w-[600px] h-[600px] bg-blue-600/20 blur-[180px] rounded-full -top-40 -left-40"></div>
+
+
+
+      <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+
+
+        {/* LEFT SIDE */}
+
+        <div>
+
+
+          {/* Label */}
+
+          <p className="text-blue-500 font-semibold tracking-widest mb-4">
+
+            ABOUT NINEBYT
+
           </p>
+
+
 
           {/* Heading */}
-          <h2 className="text-4xl md:text-5xl lg:text-[52px] font-extrabold text-[#111827] leading-tight">
-            Trusted Care
-            <br />
-            <span className="font-serif italic font-medium">
-              For Every Family
+
+          <h2 className="text-4xl md:text-6xl font-bold leading-tight mb-6">
+
+            We build digital solutions
+
+            <span className="text-blue-500 block">
+
+              that help businesses grow
+
             </span>
+
           </h2>
 
-          {/* Paragraph */}
-          <p className="max-w-xl mx-auto mt-6 text-base text-black leading-relaxed">
-
-             Zenith Care Services provides skilled nurses and caregivers for home
-and hospital care. We are committed to delivering compassionate,
-reliable, and personalized healthcare solutions that support the
-comfort, safety, and well-being of every patient.
 
 
+          {/* Description */}
+
+          <p className="text-gray-400 text-lg mb-6 leading-relaxed">
+
+            <span className="text-white font-semibold">Ninebyt</span> is a modern digital agency helping businesses
+            establish a strong online presence through high-quality design,
+            technology, and strategy.
 
           </p>
 
-          {/* Core Values */}
-          <p className="mt-10 text-sm font-medium text-gray-800">
-            Our Core Values
+
+
+          <p className="text-gray-400 text-lg leading-relaxed">
+
+            We focus on building scalable, high-performance digital products
+            designed for long-term success.
+
           </p>
 
-          {/* Cards */}
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
 
-            <ValueCard
-              icon={<FaUserNurse />}
-              text="Skilled Nurses"
-            />
 
-            <ValueCard
-              icon={<FaHeart />}
-              text="Compassionate Care"
-            />
+          {/* Stats */}
 
-            <ValueCard
-              icon={<FaHospital />}
-              text="Home & Hospital Support"
-            />
+          <div className="flex gap-12 mt-12">
 
-            <ValueCard
-              icon={<FaUserNurse />}
-              text="Personalized Treatment"
-            />
+
+            {[
+              { number: "20+", label: "Projects Delivered" },
+              { number: "10+", label: "Clients" },
+              { number: "100%", label: "Client Satisfaction" }
+            ].map((stat, i) => (
+
+
+              <div key={i} className="group cursor-pointer">
+
+
+                <h3 className="text-4xl font-bold text-blue-500 transition group-hover:scale-110">
+
+                  {stat.number}
+
+                </h3>
+
+
+                <p className="text-gray-500 text-sm">
+
+                  {stat.label}
+
+                </p>
+
+
+              </div>
+
+
+            ))}
+
 
           </div>
 
+
         </div>
 
+
+
+        {/* RIGHT CARD */}
+
+
+        <div className="relative group">
+
+
+          {/* Glow Border */}
+
+
+          <div className="absolute -inset-[1px] bg-gradient-to-r from-blue-600 to-blue-400 rounded-3xl blur opacity-0 group-hover:opacity-100 transition duration-500"></div>
+
+
+
+          {/* Card */}
+
+
+          <div className="relative bg-white/5 border border-white/10 backdrop-blur-xl p-10 rounded-3xl transition duration-500 group-hover:translate-y-[-5px]">
+
+
+            <h3 className="text-2xl font-semibold mb-6">
+
+              What we do at
+
+              <span className="text-blue-500"> Ninebyt</span>
+
+            </h3>
+
+
+
+            <ul className="space-y-5 text-gray-400">
+
+
+              {[
+                "Professional web design for modern businesses",
+                "Digital marketing strategies that drive growth",
+                "Social media management and brand building",
+                "High-performance and scalable solutions",
+                "Reliable long-term technical support"
+              ].map((item, i) => (
+
+
+                <li
+                  key={i}
+                  className="transition group-hover:translate-x-2 duration-300"
+                >
+
+                  {item}
+
+                </li>
+
+
+              ))}
+
+
+            </ul>
+
+
+          </div>
+
+
+        </div>
+
+
+
       </div>
-    </motion.section>
-  );
-}
 
-/* ================= Value Card ================= */
 
-function ValueCard({ icon, text }) {
-  return (
-    <div className="flex items-center gap-2 bg-white px-6 py-3 rounded-full border border-pink-200 shadow-sm hover:shadow-md transition text-sm font-medium text-gray-900">
-
-      <span className="text-[#1FA6D9] text-lg">
-        {icon}
-      </span>
-
-      {text}
-
-    </div>
+    </section>
   );
 }

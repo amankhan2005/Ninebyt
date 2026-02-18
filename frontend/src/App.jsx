@@ -13,18 +13,11 @@ import ScrollToTop from "./components/ScrollToTop";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
-import FAQ from "./pages/faq";
-
-// Services Pages
-import RN from "./pages/services/RN";
-import LPN from "./pages/services/LPN";
-import GNA from "./pages/services/GNA";
-import CNA from "./pages/services/CNA";
-import PTOT from "./pages/services/PTOT";
-
-// Forms
-import RequestNurse from "./forms/RequestNurse";
-import ApplyNurse from "./forms/ApplyNurse";  
+import Services from "./pages/Services";
+ 
+ 
+ 
+ 
 
 export default function App() {
   return (
@@ -42,21 +35,14 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about-us" element={<About />} />
         <Route path="/contact-us" element={<Contact />} />
-        <Route path="/faq" element={<FAQ />} />
-
+ 
         {/* Career Page (ApplyNurse) */}
-        <Route path="/careers" element={<ApplyNurse />} />
-
+ 
         {/* Service Pages */}
-        <Route path="/services/rn" element={<RN />} />
-        <Route path="/services/lpn" element={<LPN />} />
-        <Route path="/services/gna" element={<GNA />} />
-        <Route path="/services/cna" element={<CNA />} />
-        <Route path="/services/ptot" element={<PTOT />} />
-
+       
+<Route path="/services" element={<Services />} />
         {/* Client Form */}
-        <Route path="/request-nurse" element={<RequestNurse />} />
-
+ 
       </Routes>
 
       {/* Footer */}
