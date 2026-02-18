@@ -32,9 +32,9 @@ const __dirname = path.dirname(__filename);
 /* ================= CORS (FIRST) ================= */
 
 const allowedOrigins = [
-  "https://zenithcareservice.org",
-  "https://www.zenithcareservice.org",
-  "https://zenithcareservices.netlify.app",
+  "https://ninebyt.xyz",
+  "https://www.ninebyt.xyz",
+  "https://ninebyt.netlify.app",
 ];
 
 app.use(
