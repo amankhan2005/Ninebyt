@@ -110,10 +110,10 @@ export default function Footer() {
 
               <br />
 
-              <a href="mailto:team9byt@gmail.com"
+              <a href="mailto:ninebytteam@gmail.com"
                 className="hover:text-blue-500 transition">
 
-                team9byt@gmail.com
+                ninebytteam@gmail.com
 
               </a>
 
