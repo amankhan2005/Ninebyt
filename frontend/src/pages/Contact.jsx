@@ -7,7 +7,7 @@ export default function ContactUs() {
 
   const { settings } = useSettings();
 
-  const CONTACT_EMAIL = settings?.email || "team9byt@gmail.com";
+  const CONTACT_EMAIL = settings?.email || "ninebytteam@gmail.com";
   const CONTACT_PHONE = settings?.phone || "+91 00000 00000";
   const CONTACT_ADDRESS = settings?.address || "India";
 
