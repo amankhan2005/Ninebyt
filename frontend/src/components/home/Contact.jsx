@@ -6,9 +6,29 @@ export default function Contact() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleChange = e => setForm(p => ({ ...p, [e.target.name]: e.target.value }));
-  const handleSubmit = e => { e.preventDefault(); setSent(true); };
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      const res = await fetch("https://ninebyt.onrender.com/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("Failed to send");
+      setSent(true);
+    } catch (err) {
+      setError("Something went wrong. Please try WhatsApp or Email directly.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="contact" ref={ref} className="relative py-20 sm:py-28 bg-[#050508] text-white px-5 sm:px-6 overflow-hidden">
@@ -100,12 +120,33 @@ export default function Contact() {
                   <textarea name="message" value={form.message} onChange={handleChange} required rows={4} placeholder="Tell me about your project, timeline, and budget..."
                     className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl px-4 py-3 text-white placeholder-white/20 text-sm focus:outline-none focus:border-blue-500/50 transition-colors duration-300 resize-none" />
                 </div>
-                <button type="submit"
-                  className="w-full py-4 rounded-xl font-semibold text-white transition-all duration-300 active:scale-[0.98] hover:scale-[1.02] relative overflow-hidden group"
-                  style={{ background: "linear-gradient(135deg, #1d4ed8, #3b82f6)", boxShadow: "0 0 30px rgba(59,130,246,0.25)" }}>
+
+                {/* Error message */}
+                {error && (
+                  <p className="text-red-400/80 text-xs border border-red-500/20 rounded-lg px-3 py-2 bg-red-500/5">
+                    {error}
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full py-4 rounded-xl font-semibold text-white transition-all duration-300 active:scale-[0.98] hover:scale-[1.02] disabled:opacity-60 disabled:scale-100 disabled:cursor-not-allowed relative overflow-hidden group"
+                  style={{ background: "linear-gradient(135deg, #1d4ed8, #3b82f6)", boxShadow: "0 0 30px rgba(59,130,246,0.25)" }}
+                >
                   <span className="absolute inset-0 bg-white/0 group-hover:bg-white/5 transition-colors duration-300" />
                   <span className="relative flex items-center justify-center gap-2 text-sm sm:text-base">
-                    Send Message <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    {loading ? (
+                      <>
+                        <svg className="animate-spin w-4 h-4" viewBox="0 0 24 24" fill="none">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 00-8 8h4z"/>
+                        </svg>
+                        Sending...
+                      </>
+                    ) : (
+                      <>Send Message <span className="group-hover:translate-x-1 transition-transform">→</span></>
+                    )}
                   </span>
                 </button>
               </form>
